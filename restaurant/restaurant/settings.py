@@ -1,19 +1,19 @@
 import os
 from pathlib import Path
 
-from django.core.management.utils import get_random_secret_key
-from dotenv import load_dotenv
+# from django.core.management.utils import get_random_secret_key
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# SECRET_KEY = 'django-insecure-89w5c%s2b)*8944%^m^y5*m_3qmgqs=6_rl&mp3yao$#@d(f*c'
-SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
+SECRET_KEY = 'django-insecure-89w5c%s2b)*8944%^m^y5*m_3qmgqs=6_rl&mp3yao$#@d(f*c'
+# SECRET_KEY = os.getenv("SECRET_KEY", get_random_secret_key())
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1, localhost']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -25,7 +25,7 @@ INSTALLED_APPS = [
     "rest_framework",
     # "django_filters",
     "api.apps.ApiConfig",
-    "food.apps.UsersConfig",
+    "food.apps.FoodConfig",
 ]
 
 MIDDLEWARE = [
