@@ -37,7 +37,7 @@ class FoodCategory(TimeStampedModel):
 
 
 class Food(TimeStampedModel):
-    """Модель еды."""
+    """Модель блюд."""
     category = models.ForeignKey(
         FoodCategory,
         verbose_name='Раздел меню',

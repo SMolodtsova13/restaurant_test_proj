@@ -25,8 +25,20 @@ class FoodSerializer(serializers.ModelSerializer):
 
 
 class FoodListSerializer(serializers.ModelSerializer):
-    foods = FoodSerializer(source='food', many=True, read_only=True)
+    foods = serializers.SerializerMethodField()
+
+    def get_foods(self, obj):
+        """Фильтрация блюд внутри категории."""
+        queryset = obj.food.filter(is_publish=True)
+        return FoodSerializer(queryset, many=True, read_only=True).data
 
     class Meta:
         model = FoodCategory
-        fields = ('id', 'name_ru', 'name_en', 'name_ch', 'order_id', 'foods')
+        fields = (
+            'id',
+            'name_ru',
+            'name_en',
+            'name_ch',
+            'order_id',
+            'foods'
+        )
